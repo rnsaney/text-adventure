@@ -1,0 +1,19 @@
+{
+    "version": 8,
+    "configurePresets": [
+        {
+            "name": "default-clang",
+            "displayName": "Clang 15.0.0 arm64-apple-darwin23.3.0",
+            "description": "Using compilers: C = /usr/bin/clang, CXX = /usr/bin/clang++",
+            "hidden": false,
+            "generator": "Unix Makefiles",
+            "binaryDir": "${workspaceFolder}/build",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "/usr/bin/clang",
+                "CMAKE_CXX_COMPILER": "/usr/bin/clang++",
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
+            }
+        }
+    ]
+}
