@@ -11,11 +11,13 @@ cc_binary(
 cc_library(
     name = "lib",
     srcs = [
-        "state.cc",
+        "all_actions.cc",
         "scene.cc",
+        "state.cc",
     ],
     hdrs = [
         "action.h",
+        "all_actions.h",
         "scene.h",
         "state.h",
     ],
