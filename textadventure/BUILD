@@ -1,7 +1,7 @@
 cc_binary(
     name = "main",
     srcs = [
-        "textadventure-main.cc",
+        "main.cc",
     ],
     deps = [
         ":lib",
