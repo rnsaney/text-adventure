@@ -11,14 +11,15 @@ class Scene;
 
 class State {
  public:
-  State(Scene* first_scene);
-  ~State();
+  State() = default;
+  ~State() = default;
 
   // Go to the scene by name if it exists.
-  void ToScene(const std::string& scene_name);
+  void ToScene(Scene* scene);
+  Scene* CurrentScene() const;
 
-  Scene* current_scene;
-  std::map<std::string, game::Scene*> scene_map;
+ private:
+  Scene* _current_scene;
 };
 
 }  // namespace game

@@ -1,9 +1,7 @@
-#include <map>
-#include <string>
+#ifndef TEXTADVENTURE_ALL_ACTIONS_H
+#define TEXTADVENTURE_ALL_ACTIONS_H
 
 #include "textadventure/action.h"
-#include "textadventure/scene.h"
-#include "textadventure/state.h"
 
 namespace game {
 namespace actions {
@@ -14,3 +12,5 @@ Action* GoToCastle();
 
 }  // namespace actions
 }  // namespace game
+
+#endif  // TEXTADVENTURE_ALL_ACTIONS_H

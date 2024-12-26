@@ -5,17 +5,13 @@
 
 namespace game {
 
-State::State(Scene* first_scene) : current_scene(first_scene) {
-  scene_map = {};
+void State::ToScene(game::Scene* new_scene) {
+  _current_scene = new_scene;
+  _current_scene->PrintDescription();
 }
 
-State::~State() {}
-
-void State::ToScene(const std::string& scene_name) {
-  if (auto it = scene_map.find("The Mine"); it != scene_map.end()) {
-    current_scene = it->second;
-    current_scene->PrintDescription();
-  }
+Scene* State::CurrentScene() const {
+  return _current_scene;
 }
 
 }  // namespace game
