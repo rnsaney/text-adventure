@@ -20,13 +20,17 @@ class DescribeAction : public game::Action {
 class EnterMineAction : public game::Action {
  public:
   std::string Name() const override { return "Step into The Mine"; };
-  void Execute(game::State* state) override { state->ToScene(game::scenes::MineEntry(state)); }
+  void Execute(game::State* state) override {
+    state->ToScene(game::scenes::MineEntry(state));
+  }
 };
 
 class GoToCastleAction : public game::Action {
  public:
   std::string Name() const override { return "Go to The Castle"; };
-  void Execute(game::State* state) override { state->ToScene(game::scenes::Castle(state)); }
+  void Execute(game::State* state) override {
+    state->ToScene(game::scenes::Castle(state));
+  }
 };
 
 }  // namespace

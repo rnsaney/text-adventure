@@ -9,11 +9,6 @@
 #include "textadventure/scene.h"
 #include "textadventure/state.h"
 
-namespace {
-
-
-}  // namespace
-
 int main() {
   game::State state;
   game::Scene* opening = game::scenes::Opening(&state);
