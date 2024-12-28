@@ -10,8 +10,6 @@ void State::ToScene(game::Scene* new_scene) {
   _current_scene->PrintDescription();
 }
 
-Scene* State::CurrentScene() const {
-  return _current_scene;
-}
+Scene* State::CurrentScene() const { return _current_scene; }
 
 }  // namespace game
