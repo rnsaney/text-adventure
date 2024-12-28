@@ -33,22 +33,18 @@ class GoToCastleAction : public game::Action {
   }
 };
 
+#define STATIC_GAME_ACTION(prefix) \
+  Action* prefix() {               \
+    static prefix##Action a;       \
+    return &a;                     \
+  }
+
 }  // namespace
-
 namespace actions {
-Action* Describe() {
-  static DescribeAction a;
-  return &a;
-}
 
-Action* EnterMine() {
-  static EnterMineAction a;
-  return &a;
-}
+STATIC_GAME_ACTION(Describe)
+STATIC_GAME_ACTION(EnterMine)
+STATIC_GAME_ACTION(GoToCastle)
 
-Action* GoToCastle() {
-  static GoToCastleAction a;
-  return &a;
-}
 }  // namespace actions
 }  // namespace game
