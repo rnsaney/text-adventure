@@ -33,9 +33,12 @@ void Scene::TryInput(const std::string& input, State* state) {
     std::string candidate = std::to_string(i + 1);
     if (trimmed_input == candidate) {
       actions[i]->Execute(state);
+      Reaction();
       return;
     }
   }
   std::cout << "(Unrecognized)" << std::endl;
 }
+
+void Scene::Reaction() {}
 }  // namespace game

@@ -8,10 +8,18 @@
 namespace game {
 namespace scenes {
 
-class CastleScene : public game::Scene {
+class CastleScene : virtual public game::Scene {
  public:
+  CastleScene(game::State* state);
   std::string Description() const override;
   std::vector<Action*> Actions() const override;
+  void Reaction() override;
+
+ private:
+  void GuardSpeaks() const;
+
+  game::State* _state;
+  int step = 1;
 };
 
 }  // namespace scenes

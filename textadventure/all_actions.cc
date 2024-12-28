@@ -33,6 +33,19 @@ class GoToCastleAction : public game::Action {
   }
 };
 
+class ShowGemAction : public game::Action {
+ public:
+  std::string Name() const override { return "Show Gem"; };
+  void Execute(game::State* state) override {
+    if (state->CurrentScene() == game::scenes::Castle(state)) {
+      if (!state->PlayerHasGem()) {
+        std::cout << "You do not have a gem.\n" << std::endl;
+        state->GameOver();
+      }
+    }
+  }
+};
+
 #define STATIC_GAME_ACTION(prefix) \
   Action* prefix() {               \
     static prefix##Action a;       \
@@ -41,10 +54,10 @@ class GoToCastleAction : public game::Action {
 
 }  // namespace
 namespace actions {
-
 STATIC_GAME_ACTION(Describe)
 STATIC_GAME_ACTION(EnterMine)
 STATIC_GAME_ACTION(GoToCastle)
+STATIC_GAME_ACTION(ShowGem)
 
 }  // namespace actions
 }  // namespace game

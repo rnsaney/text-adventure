@@ -22,6 +22,10 @@ int main() {
     std::cout.flush();
     std::getline(std::cin, input);
     state.CurrentScene()->TryInput(input, &state);
+    if (state.IsGameOver()) {
+      std::cout << "\nGAME OVER\n" << std::endl;
+      break;
+    }
   }
   return 0;
 }

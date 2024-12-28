@@ -16,7 +16,7 @@ Scene* MineEntry(game::State* state) {
   return &s;
 }
 Scene* Castle(game::State* state) {
-  static game::scenes::CastleScene s;
+  static game::scenes::CastleScene s(state);
   return &s;
 }
 

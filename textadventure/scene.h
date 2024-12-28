@@ -27,6 +27,8 @@ class Scene {
 
   void TryInput(const std::string& input, State* state);
 
+  virtual void Reaction();
+
  protected:
   // Protected constructor to ensure the class remains abstract
   Scene() = default;
