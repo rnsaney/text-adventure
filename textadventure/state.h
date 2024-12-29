@@ -18,6 +18,8 @@ class State {
   void ToScene(Scene* scene);
   Scene* CurrentScene() const;
   bool PlayerHasGem() const;
+  bool PlayerHasTorch() const;
+  void SetPlayerHasTorch(bool has_torch);
   bool IsGameOver() const;
   void GameOver();
 
@@ -25,6 +27,7 @@ class State {
   Scene* _current_scene;
   bool _player_has_gem = false;
   bool _game_over = false;
+  bool _player_has_torch = false;
 };
 
 }  // namespace game

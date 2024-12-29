@@ -46,6 +46,12 @@ class ShowGemAction : public game::Action {
   }
 };
 
+class TakeTorchAction : public game::Action {
+ public:
+  std::string Name() const override { return "Take Torch"; };
+  void Execute(game::State* state) override { state->SetPlayerHasTorch(true); }
+};
+
 #define STATIC_GAME_ACTION(prefix) \
   Action* prefix() {               \
     static prefix##Action a;       \
@@ -58,6 +64,7 @@ STATIC_GAME_ACTION(Describe)
 STATIC_GAME_ACTION(EnterMine)
 STATIC_GAME_ACTION(GoToCastle)
 STATIC_GAME_ACTION(ShowGem)
+STATIC_GAME_ACTION(TakeTorch)
 
 }  // namespace actions
 }  // namespace game

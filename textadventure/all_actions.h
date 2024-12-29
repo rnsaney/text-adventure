@@ -10,6 +10,7 @@ Action* Describe();
 Action* EnterMine();
 Action* GoToCastle();
 Action* ShowGem();
+Action* TakeTorch();
 
 }  // namespace actions
 }  // namespace game

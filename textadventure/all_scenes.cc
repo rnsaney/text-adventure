@@ -1,6 +1,7 @@
 #include "textadventure/all_scenes.h"
 
 #include "textadventure/castle_scene.h"
+#include "textadventure/mine_entry_scene.h"
 #include "textadventure/opening_scene.h"
 #include "textadventure/scene.h"
 
@@ -12,7 +13,7 @@ Scene* Opening(game::State* state) {
   return &s;
 }
 Scene* MineEntry(game::State* state) {
-  static game::scenes::OpeningScene s(state);
+  static game::scenes::MineEntryScene s(state);
   return &s;
 }
 Scene* Castle(game::State* state) {
