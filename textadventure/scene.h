@@ -15,6 +15,8 @@ class Scene {
  public:
   virtual ~Scene() = default;
 
+  virtual std::string Name() const = 0;
+
   // Return the description of the scene.
   virtual std::string Description() const = 0;
 

@@ -11,6 +11,7 @@ namespace scenes {
 class CastleScene : virtual public game::Scene {
  public:
   CastleScene(game::State* state);
+  std::string Name() const override;
   std::string Description() const override;
   std::vector<Action*> Actions() const override;
   void Reaction() override;

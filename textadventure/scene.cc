@@ -19,6 +19,7 @@ void Scene::PrintDescription() const {
 }
 
 void Scene::PrintOptions() const {
+  std::cout << "\nActions (" << Name() << "):" << std::endl;
   auto actions = Actions();
   for (int i = 0; i < actions.size(); i++) {
     std::cout << "[" << (i + 1) << "] " << actions[i]->Name() << std::endl;

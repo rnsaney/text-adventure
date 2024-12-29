@@ -11,8 +11,11 @@ namespace scenes {
 
 CastleScene::CastleScene(game::State* state) : _state(state) {}
 
+std::string CastleScene::Name() const { return "The Castle"; }
+
 std::string CastleScene::Description() const {
-  return R"(You stand in front of The Castle.
+  return R"(You stand in front of The Castle. It looms vast. A maiden is visible in a high window.
+You take one step forward.
 
 The Guard intercepts you before you approach.
 

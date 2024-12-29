@@ -11,6 +11,7 @@ namespace scenes {
 class OpeningScene : public game::Scene {
  public:
   OpeningScene(game::State* state);
+  std::string Name() const override;
   std::string Description() const override;
   std::vector<Action*> Actions() const override;
 

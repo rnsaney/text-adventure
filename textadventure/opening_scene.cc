@@ -8,6 +8,8 @@ namespace game {
 namespace scenes {
 OpeningScene::OpeningScene(game::State* state) : _state(state) {}
 
+std::string OpeningScene::Name() const { return "The Opening"; }
+
 std::string OpeningScene::Description() const {
   return R"(You are a Gem Hunter!
 Princess Krystalia seeks the best Gem in all of the land.
@@ -20,7 +22,6 @@ In front of you, the dark darkness of The Mine...)";
 
 std::vector<game::Action*> OpeningScene::Actions() const {
   return {
-      game::actions::Describe(),
       game::actions::GoToCastle(),
       game::actions::EnterMine(),
   };

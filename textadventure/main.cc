@@ -16,7 +16,6 @@ int main() {
 
   while (true) {
     std::string input;
-    std::cout << "\nOptions: " << std::endl;
     state.CurrentScene()->PrintOptions();
     std::cout << ">>> ";
     std::cout.flush();
