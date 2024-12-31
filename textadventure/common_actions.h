@@ -1,5 +1,5 @@
-#ifndef TEXTADVENTURE_ALL_ACTIONS_H
-#define TEXTADVENTURE_ALL_ACTIONS_H
+#ifndef TEXTADVENTURE_COMMON_ACTIONS_H
+#define TEXTADVENTURE_COMMON_ACTIONS_H
 
 #include "textadventure/action.h"
 
@@ -11,8 +11,9 @@ Action* EnterMine();
 Action* GoToCastle();
 Action* ShowGem();
 Action* TakeTorch();
+Action* DiveDeeper();
 
 }  // namespace actions
 }  // namespace game
 
-#endif  // TEXTADVENTURE_ALL_ACTIONS_H
+#endif  // TEXTADVENTURE_COMMON_ACTIONS_H

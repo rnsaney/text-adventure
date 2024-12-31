@@ -1,7 +1,7 @@
 #include "textadventure/mine_entry_scene.h"
 
 #include "textadventure/action.h"
-#include "textadventure/all_actions.h"
+#include "textadventure/common_actions.h"
 #include "textadventure/scene.h"
 
 namespace game {
@@ -29,7 +29,7 @@ std::vector<game::Action*> MineEntryScene::Actions() const {
   if (!_state->PlayerHasTorch()) {
     result.push_back(game::actions::TakeTorch());
   }
-  result.push_back(game::actions::GoToCastle());
+  result.push_back(game::actions::DiveDeeper());
   return result;
 }
 

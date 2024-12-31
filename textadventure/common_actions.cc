@@ -49,7 +49,18 @@ class ShowGemAction : public game::Action {
 class TakeTorchAction : public game::Action {
  public:
   std::string Name() const override { return "Take Torch"; };
-  void Execute(game::State* state) override { state->SetPlayerHasTorch(true); }
+  void Execute(game::State* state) override {
+    state->SetPlayerHasTorch(true);
+    std::cout << "You take the torch.\n" << std::endl;
+  }
+};
+
+class DiveDeeperAction : public game::Action {
+ public:
+  std::string Name() const override { return "Dive Deeper"; };
+  void Execute(game::State* state) override {
+    state->ToScene(game::scenes::MineGate(state));
+  }
 };
 
 #define STATIC_GAME_ACTION(prefix) \
@@ -65,6 +76,7 @@ STATIC_GAME_ACTION(EnterMine)
 STATIC_GAME_ACTION(GoToCastle)
 STATIC_GAME_ACTION(ShowGem)
 STATIC_GAME_ACTION(TakeTorch)
+STATIC_GAME_ACTION(DiveDeeper)
 
 }  // namespace actions
 }  // namespace game

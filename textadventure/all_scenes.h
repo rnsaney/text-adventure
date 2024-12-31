@@ -10,6 +10,7 @@ namespace scenes {
 Scene* Opening(game::State* state);
 Scene* MineEntry(game::State* state);
 Scene* Castle(game::State* state);
+Scene* MineGate(game::State* state);
 
 }  // namespace scenes
 }  // namespace game

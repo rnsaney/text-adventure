@@ -1,7 +1,7 @@
 #include "textadventure/opening_scene.h"
 
 #include "textadventure/action.h"
-#include "textadventure/all_actions.h"
+#include "textadventure/common_actions.h"
 #include "textadventure/scene.h"
 
 namespace game {

@@ -4,8 +4,8 @@
 #include <vector>
 
 #include "textadventure/action.h"
-#include "textadventure/all_actions.h"
 #include "textadventure/all_scenes.h"
+#include "textadventure/common_actions.h"
 #include "textadventure/scene.h"
 #include "textadventure/state.h"
 

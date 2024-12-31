@@ -1,5 +1,5 @@
-#ifndef TEXTADVENTURE_OPENING_SCENE_H
-#define TEXTADVENTURE_OPENING_SCENE_H
+#ifndef TEXTADVENTURE_MINE_GATE_SCENE_H
+#define TEXTADVENTURE_MINE_GATE_SCENE_H
 
 #include "textadventure/action.h"
 #include "textadventure/common_actions.h"
@@ -8,9 +8,9 @@
 namespace game {
 namespace scenes {
 
-class OpeningScene : public game::Scene {
+class MineGateScene : public game::Scene {
  public:
-  OpeningScene(game::State* state);
+  MineGateScene(game::State* state);
   std::string Name() const override;
   std::string Description() const override;
   std::vector<Action*> Actions() const override;
@@ -22,4 +22,4 @@ class OpeningScene : public game::Scene {
 }  // namespace scenes
 }  // namespace game
 
-#endif  // TEXTADVENTURE_OPENING_SCENE_H
+#endif  // TEXTADVENTURE_MINE_GATE_SCENE_H
