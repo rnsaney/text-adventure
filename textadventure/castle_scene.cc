@@ -25,7 +25,7 @@ The Guard says, "You! Gem Hunter! Stop there and present your best gem.")";
 std::vector<game::Action*> CastleScene::Actions() const {
   return {
       game::actions::ShowGem(),
-      game::actions::EnterMine(),
+      game::actions::GoToOpeningField(),
   };
 }
 

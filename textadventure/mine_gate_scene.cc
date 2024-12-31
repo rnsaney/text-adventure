@@ -54,9 +54,9 @@ std::string MineGateScene::Description() const {
         "On closer inspection, a 4-digit padlock fastens the door.\n"
         "There is a tunnel and slight draft coming up from behind The Gate.\n"
         "\n"
-        R"(You realize, "I --must-- go deeper, the gems is I need is beyond this gate!")"
+        R"(You realize, "I --must-- go deeper, the Gem is beyond this gate!")"
         "\n"
-        "To the side is a small bed with a notebook.\n");
+        "To the side is a small bed with a notebook.");
   }
   return desc;
 }

@@ -9,6 +9,7 @@ namespace actions {
 Action* Describe();
 Action* EnterMine();
 Action* GoToCastle();
+Action* GoToOpeningField();
 Action* ShowGem();
 Action* TakeTorch();
 Action* DiveDeeper();
