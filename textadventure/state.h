@@ -22,12 +22,15 @@ class State {
   void SetPlayerHasTorch(bool has_torch);
   bool IsGameOver() const;
   void GameOver();
+  int GatekeepersLogbookPage() const;
+  void SetGatekeepersLogbookPage(int page);
 
  private:
   Scene* _current_scene;
   bool _player_has_gem = false;
   bool _game_over = false;
   bool _player_has_torch = false;
+  int _gatekeepers_logbook_page = 0;
 };
 
 }  // namespace game

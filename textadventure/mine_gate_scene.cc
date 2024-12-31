@@ -37,6 +37,46 @@ Action* FiddleWithPadlock() {
   static FiddleWithPadlockAction a;
   return &a;
 }
+
+class ReadLogbookAction : public game::Action {
+ public:
+  std::string Name() const override { return "Read Book"; };
+  void Execute(game::State* state) override {
+    switch (state->GatekeepersLogbookPage()) {
+      case 0:
+      case 1:
+        std::cout << "The cover says: Gatekeeper's Log.\n"
+                     "\n"
+                     "You turn to the last page.\n"
+                     "It reads:\n\n"
+                     "I just saw 5 6 7 8 RATS!\n"
+                     "Whoever you are, this is your problem now.\n"
+                     "I quit."
+                  << std::endl;
+        state->SetGatekeepersLogbookPage(2);
+        break;
+      case 2:
+        std::cout << "You turn to the first page.\n"
+                     "It reads:\n"
+                     "\n"
+                     "Today is my first day as The Gatekeeper!\n"
+                     "Here is a short poem to help me -remember- ;)\n"
+                     "    They fall. They rise.\n"
+                     "    They shoot. They shine.\n"
+                     "SO excited for this job..!\n"
+                     "\n"
+                     "You close the book."
+                  << std::endl;
+        state->SetGatekeepersLogbookPage(1);
+        break;
+    }
+  }
+};
+
+Action* ReadLogbook() {
+  static ReadLogbookAction a;
+  return &a;
+}
 }  // namespace
 
 MineGateScene::MineGateScene(game::State* state) : _state(state) {}
@@ -56,7 +96,7 @@ std::string MineGateScene::Description() const {
         "\n"
         R"(You realize, "I --must-- go deeper, the Gem is beyond this gate!")"
         "\n"
-        "To the side is a small bed with a notebook.");
+        "To the side is a small bed with a book.");
   }
   return desc;
 }
@@ -65,11 +105,11 @@ std::vector<game::Action*> MineGateScene::Actions() const {
   std::vector<game::Action*> result;
   if (!_state->PlayerHasTorch()) {
     result.push_back(TurnBack());
-  } else {
-    result.push_back(FiddleWithPadlock());
+    return result;
   }
+  result.push_back(FiddleWithPadlock());
+  result.push_back(ReadLogbook());
   return result;
 }
-
 }  // namespace scenes
 }  // namespace game
