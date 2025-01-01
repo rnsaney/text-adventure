@@ -27,8 +27,9 @@ int main() {
     }
     if (state.IsGameWon()) {
       std::cout << "\nYOU WIN!\n" << std::endl;
-      std::cout << "\nThis concludes The Demo. Thank you for playing!\n" << std::endl;
-      break;      
+      std::cout << "\nThis concludes The Demo. Thank you for playing!\n"
+                << std::endl;
+      break;
     }
   }
   return 0;

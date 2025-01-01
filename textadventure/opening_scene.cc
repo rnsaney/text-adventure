@@ -1,12 +1,19 @@
 #include "textadventure/opening_scene.h"
 
+#include <memory>
+
 #include "textadventure/action.h"
 #include "textadventure/common_actions.h"
 #include "textadventure/scene.h"
 
 namespace game {
 namespace scenes {
-OpeningScene::OpeningScene(game::State* state) : _state(state) {}
+OpeningScene::OpeningScene(game::State* state) : _state(state) {
+  _actions = {
+      std::make_shared<game::actions::GoToCastleAction>(),
+      std::make_shared<game::actions::EnterMineAction>(),
+  };
+}
 
 std::string OpeningScene::Name() const { return "Opening Field"; }
 
@@ -21,11 +28,8 @@ Behind you, The Castle sparkles against blue sky, standing tall and majestically
 In front of you, the dark darkness of The Mine...)";
 }
 
-std::vector<game::Action*> OpeningScene::Actions() const {
-  return {
-      game::actions::GoToCastle(),
-      game::actions::EnterMine(),
-  };
+std::vector<std::shared_ptr<Action>> OpeningScene::Actions() const {
+  return _actions;
 }
 
 }  // namespace scenes

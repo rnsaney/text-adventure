@@ -1,6 +1,7 @@
 #include "textadventure/castle_scene.h"
 
 #include <iostream>
+#include <memory>
 
 #include "textadventure/action.h"
 #include "textadventure/common_actions.h"
@@ -22,10 +23,10 @@ The Guard intercepts you before you approach.
 The Guard says, "You! Gem Hunter! Stop there and present your best gem.")";
 }
 
-std::vector<game::Action*> CastleScene::Actions() const {
+std::vector<std::shared_ptr<game::Action>> CastleScene::Actions() const {
   return {
-      game::actions::ShowGem(),
-      game::actions::GoToOpeningField(),
+      std::make_shared<game::actions::ShowGemAction>(),
+      std::make_shared<game::actions::GoToOpeningFieldAction>(),
   };
 }
 

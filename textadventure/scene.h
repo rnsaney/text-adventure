@@ -1,6 +1,7 @@
 #ifndef TEXTADVENTURE_SCENE_H
 #define TEXTADVENTURE_SCENE_H
 
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -23,7 +24,7 @@ class Scene {
   void PrintDescription() const;
 
   // Retrieve possible actions.
-  virtual std::vector<Action*> Actions() const = 0;
+  virtual std::vector<std::shared_ptr<Action>> Actions() const = 0;
 
   void PrintOptions() const;
 

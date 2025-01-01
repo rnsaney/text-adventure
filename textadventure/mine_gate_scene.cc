@@ -21,11 +21,6 @@ class TurnBackAction : public game::Action {
   }
 };
 
-Action* TurnBack() {
-  static TurnBackAction a;
-  return &a;
-}
-
 class FiddleWithPadlockAction : public game::Action {
  public:
   std::string Name() const override { return "Fiddle with Padlock"; };
@@ -36,11 +31,6 @@ class FiddleWithPadlockAction : public game::Action {
     state->SetMineGatePadlockState(game::State::MineGatePadlockState::FIDDLING);
   }
 };
-
-Action* FiddleWithPadlock() {
-  static FiddleWithPadlockAction a;
-  return &a;
-}
 
 class EnterPadlockNumberAction : public game::Action {
  public:
@@ -65,7 +55,7 @@ class EnterPadlockNumberAction : public game::Action {
 
 const std::vector<std::shared_ptr<EnterPadlockNumberAction>>
 EnterPadlockNumberActions() {
-  static std::vector<std::shared_ptr<EnterPadlockNumberAction>> result = {
+  std::vector<std::shared_ptr<EnterPadlockNumberAction>> result = {
       std::make_shared<EnterPadlockNumberAction>("1927"),
       std::make_shared<EnterPadlockNumberAction>("3819"),
       std::make_shared<EnterPadlockNumberAction>("9671"),
@@ -113,11 +103,6 @@ class ReadLogbookAction : public game::Action {
     }
   }
 };
-
-Action* ReadLogbook() {
-  static ReadLogbookAction a;
-  return &a;
-}
 }  // namespace
 
 MineGateScene::MineGateScene(game::State* state) : _state(state) {}
@@ -142,22 +127,22 @@ std::string MineGateScene::Description() const {
   return desc;
 }
 
-std::vector<game::Action*> MineGateScene::Actions() const {
-  std::vector<game::Action*> result;
+std::vector<std::shared_ptr<game::Action>> MineGateScene::Actions() const {
+  std::vector<std::shared_ptr<game::Action>> result;
   if (!_state->PlayerHasTorch()) {
-    result.push_back(TurnBack());
+    result.push_back(std::make_shared<TurnBackAction>());
     return result;
   }
   if (_state->GetMineGatePadlockState() ==
       game::State::MineGatePadlockState::FIDDLING) {
     auto action_array = EnterPadlockNumberActions();
     for (int i = 0; i < action_array.size(); i++) {
-      result.emplace_back(action_array[i].get());
+      result.push_back(action_array[i]);
     }
     return result;
   }
-  result.push_back(FiddleWithPadlock());
-  result.push_back(ReadLogbook());
+  result.push_back(std::make_shared<FiddleWithPadlockAction>());
+  result.push_back(std::make_shared<ReadLogbookAction>());
   return result;
 }
 }  // namespace scenes

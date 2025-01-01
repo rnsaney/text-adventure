@@ -6,13 +6,47 @@
 namespace game {
 namespace actions {
 
-Action* Describe();
-Action* EnterMine();
-Action* GoToCastle();
-Action* GoToOpeningField();
-Action* ShowGem();
-Action* TakeTorch();
-Action* DiveDeeper();
+class DescribeAction : public game::Action {
+ public:
+  std::string Name() const override;
+  void Execute(game::State* state) override;
+};
+
+class GoToOpeningFieldAction : public game::Action {
+ public:
+  std::string Name() const override;
+  void Execute(game::State* state) override;
+};
+
+class EnterMineAction : public game::Action {
+ public:
+  std::string Name() const override;
+  void Execute(game::State* state) override;
+};
+
+class GoToCastleAction : public game::Action {
+ public:
+  std::string Name() const override;
+  void Execute(game::State* state) override;
+};
+
+class ShowGemAction : public game::Action {
+ public:
+  std::string Name() const override;
+  void Execute(game::State* state) override;
+};
+
+class TakeTorchAction : public game::Action {
+ public:
+  std::string Name() const override;
+  void Execute(game::State* state) override;
+};
+
+class DiveDeeperAction : public game::Action {
+ public:
+  std::string Name() const override;
+  void Execute(game::State* state) override;
+};
 
 }  // namespace actions
 }  // namespace game
