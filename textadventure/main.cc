@@ -25,6 +25,11 @@ int main() {
       std::cout << "\nGAME OVER\n" << std::endl;
       break;
     }
+    if (state.IsGameWon()) {
+      std::cout << "\nYOU WIN!\n" << std::endl;
+      std::cout << "\nThis concludes The Demo. Thank you for playing!\n" << std::endl;
+      break;      
+    }
   }
   return 0;
 }

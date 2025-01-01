@@ -1,6 +1,9 @@
 #include "textadventure/mine_gate_scene.h"
 
+#include <array>
 #include <iostream>
+#include <memory>
+#include <string>
 
 #include "textadventure/action.h"
 #include "textadventure/all_scenes.h"
@@ -27,15 +30,53 @@ class FiddleWithPadlockAction : public game::Action {
  public:
   std::string Name() const override { return "Fiddle with Padlock"; };
   void Execute(game::State* state) override {
-    std::cout << "The padlock digits are set to 4610."
-                 "\nThe lock won't budge."
+    std::cout << "The padlock digits are set to " +
+                     state->MineGatePadlockDigits() + "."
               << std::endl;
+    state->SetMineGatePadlockState(game::State::MineGatePadlockState::FIDDLING);
   }
 };
 
 Action* FiddleWithPadlock() {
   static FiddleWithPadlockAction a;
   return &a;
+}
+
+class EnterPadlockNumberAction : public game::Action {
+ public:
+  EnterPadlockNumberAction(std::string digits) : _digits(digits) {}
+
+  std::string Name() const override { return "Try " + _digits; };
+  void Execute(game::State* state) override {
+    state->SetMineGatePadlockDigits(_digits);
+    if (_digits == "8765") {
+      state->SetMineGatePadlockState(game::State::MineGatePadlockState::OPEN);
+      std::cout << "*CAH-CLINK*\n"
+                   "The padlock opens!!"
+                << std::endl;
+      state->WinGame();
+    } else {
+      std::cout << "Hmm. The padlock doesn't budge.." << std::endl;
+      state->SetMineGatePadlockState(game::State::MineGatePadlockState::LOCKED);
+    }
+  }
+  std::string _digits;
+};
+
+const std::vector<std::shared_ptr<EnterPadlockNumberAction>>
+EnterPadlockNumberActions() {
+  static std::vector<std::shared_ptr<EnterPadlockNumberAction>> result = {
+      std::make_shared<EnterPadlockNumberAction>("1927"),
+      std::make_shared<EnterPadlockNumberAction>("3819"),
+      std::make_shared<EnterPadlockNumberAction>("9671"),
+      std::make_shared<EnterPadlockNumberAction>("8765"),
+      std::make_shared<EnterPadlockNumberAction>("6789"),
+      std::make_shared<EnterPadlockNumberAction>("5678"),
+      std::make_shared<EnterPadlockNumberAction>("4287"),
+      std::make_shared<EnterPadlockNumberAction>("8754"),
+      std::make_shared<EnterPadlockNumberAction>("3579"),
+  };
+  return result;
 }
 
 class ReadLogbookAction : public game::Action {
@@ -105,6 +146,14 @@ std::vector<game::Action*> MineGateScene::Actions() const {
   std::vector<game::Action*> result;
   if (!_state->PlayerHasTorch()) {
     result.push_back(TurnBack());
+    return result;
+  }
+  if (_state->GetMineGatePadlockState() ==
+      game::State::MineGatePadlockState::FIDDLING) {
+    auto action_array = EnterPadlockNumberActions();
+    for (int i = 0; i < action_array.size(); i++) {
+      result.emplace_back(action_array[i].get());
+    }
     return result;
   }
   result.push_back(FiddleWithPadlock());
