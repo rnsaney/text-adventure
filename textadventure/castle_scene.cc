@@ -23,10 +23,10 @@ The Guard intercepts you before you approach.
 The Guard says, "You! Gem Hunter! Stop there and present your best gem.")";
 }
 
-std::vector<std::shared_ptr<game::Action>> CastleScene::Actions() const {
+const std::vector<ActionStruct> CastleScene::Actions() const {
   return {
-      std::make_shared<game::actions::ShowGemAction>(),
-      std::make_shared<game::actions::GoToOpeningFieldAction>(),
+      game::actions::ShowGemAction(),
+      game::actions::GoToOpeningFieldAction(),
   };
 }
 

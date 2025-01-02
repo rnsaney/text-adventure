@@ -12,14 +12,9 @@ namespace scenes {
 
 class OpeningScene : public game::Scene {
  public:
-  OpeningScene(game::State* state);
   std::string Name() const override;
   std::string Description() const override;
-  std::vector<std::shared_ptr<Action>> Actions() const override;
-
- private:
-  game::State* _state;
-  std::vector<std::shared_ptr<Action>> _actions;
+  const std::vector<ActionStruct> Actions() const override;
 };
 
 }  // namespace scenes

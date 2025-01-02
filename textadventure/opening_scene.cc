@@ -8,13 +8,6 @@
 
 namespace game {
 namespace scenes {
-OpeningScene::OpeningScene(game::State* state) : _state(state) {
-  _actions = {
-      std::make_shared<game::actions::GoToCastleAction>(),
-      std::make_shared<game::actions::EnterMineAction>(),
-  };
-}
-
 std::string OpeningScene::Name() const { return "Opening Field"; }
 
 std::string OpeningScene::Description() const {
@@ -28,8 +21,11 @@ Behind you, The Castle sparkles against blue sky, standing tall and majestically
 In front of you, the dark darkness of The Mine...)";
 }
 
-std::vector<std::shared_ptr<Action>> OpeningScene::Actions() const {
-  return _actions;
+const std::vector<ActionStruct> OpeningScene::Actions() const {
+  return {
+      game::actions::GoToCastleAction(),
+      game::actions::EnterMineAction(),
+  };
 }
 
 }  // namespace scenes

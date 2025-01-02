@@ -10,7 +10,7 @@ namespace game {
 namespace scenes {
 
 Scene* Opening(game::State* state) {
-  static game::scenes::OpeningScene s(state);
+  static game::scenes::OpeningScene s;
   return &s;
 }
 Scene* MineEntry(game::State* state) {

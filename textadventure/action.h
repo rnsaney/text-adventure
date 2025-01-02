@@ -1,6 +1,8 @@
 #ifndef TEXTADVENTURE_ACTION_H
 #define TEXTADVENTURE_ACTION_H
 
+#include <functional>
+#include <memory>
 #include <string>
 
 #include "textadventure/state.h"
@@ -9,11 +11,9 @@ namespace game {
 
 class State;
 
-class Action {
- public:
-  virtual ~Action() = default;
-  virtual std::string Name() const = 0;
-  virtual void Execute(State* state) = 0;
+struct ActionStruct {
+  const std::string name;
+  const std::function<void(std::shared_ptr<State>)> action_fn;
 };
 
 }  // namespace game

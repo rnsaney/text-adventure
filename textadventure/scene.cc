@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <iostream>
 #include <map>
+#include <memory>
 #include <string>
 
 namespace game {
@@ -22,18 +23,19 @@ void Scene::PrintOptions() const {
   std::cout << "\nActions (" << Name() << "):" << std::endl;
   auto actions = Actions();
   for (int i = 0; i < actions.size(); i++) {
-    std::cout << "[" << (i + 1) << "] " << actions[i]->Name() << std::endl;
+    std::cout << "[" << (i + 1) << "] " << actions[i].name << std::endl;
   }
 }
 
-void Scene::TryInput(const std::string& input, State* state) {
+void Scene::TryInput(const std::string& input,
+                     std::shared_ptr<game::State> state) {
   auto trimmed_input = Trim(input);
 
-  auto actions = Actions();
+  std::vector<game::ActionStruct> actions = Actions();
   for (int i = 0; i < actions.size(); i++) {
     std::string candidate = std::to_string(i + 1);
     if (trimmed_input == candidate) {
-      actions[i]->Execute(state);
+      actions[i].action_fn(state);
       Reaction();
       return;
     }

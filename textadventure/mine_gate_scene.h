@@ -16,7 +16,7 @@ class MineGateScene : public game::Scene {
   MineGateScene(game::State* state);
   std::string Name() const override;
   std::string Description() const override;
-  std::vector<std::shared_ptr<Action>> Actions() const override;
+  const std::vector<ActionStruct> Actions() const override;
 
  private:
   game::State* _state;

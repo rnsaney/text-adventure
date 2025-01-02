@@ -10,47 +10,58 @@
 namespace game {
 namespace actions {
 
-std::string DescribeAction::Name() const { return "Describe"; }
-void DescribeAction::Execute(game::State* state) {
-  std::cout << state->CurrentScene()->Description() << std::endl;
+ActionStruct DescribeAction() {
+  return {.name = "Describe", .action_fn = [](std::shared_ptr<State> state) {
+            std::cout << state->CurrentScene()->Description() << std::endl;
+          }};
 }
 
-std::string GoToOpeningFieldAction::Name() const {
-  return "Go to Opening Field";
-}
-void GoToOpeningFieldAction::Execute(game::State* state) {
-  state->ToScene(game::scenes::Opening(state));
-}
-
-std::string EnterMineAction::Name() const { return "Step into The Mine"; }
-void EnterMineAction::Execute(game::State* state) {
-  state->ToScene(game::scenes::MineEntry(state));
+ActionStruct GoToOpeningFieldAction() {
+  return {.name = "Go to Opening Field",
+          .action_fn = [](std::shared_ptr<State> state) {
+            state->ToScene(game::scenes::Opening(state.get()));
+          }};
 }
 
-std::string GoToCastleAction::Name() const { return "Go to The Castle"; };
-void GoToCastleAction::Execute(game::State* state) {
-  state->ToScene(game::scenes::Castle(state));
+ActionStruct EnterMineAction() {
+  return {.name = "Step into The Mine",
+          .action_fn = [](std::shared_ptr<State> state) {
+            state->ToScene(game::scenes::MineEntry(state.get()));
+          }};
 }
 
-std::string ShowGemAction::Name() const { return "Show Gem"; }
-void ShowGemAction::Execute(game::State* state) {
-  if (state->CurrentScene() == game::scenes::Castle(state)) {
-    if (!state->PlayerHasGem()) {
-      std::cout << "You do not have a gem.\n" << std::endl;
-      state->GameOver();
-    }
-  }
+ActionStruct GoToCastleAction() {
+  return {.name = "Go to The Castle",
+          .action_fn = [](std::shared_ptr<State> state) {
+            state->ToScene(game::scenes::Castle(state.get()));
+          }};
 }
 
-std::string TakeTorchAction::Name() const { return "Take Torch"; };
-void TakeTorchAction::Execute(game::State* state) {
-  state->SetPlayerHasTorch(true);
-  std::cout << "You take the torch!" << std::endl;
+// TODO: Refactor to CastleScene implementation.
+ActionStruct ShowGemAction() {
+  return {.name = "Show Gem", .action_fn = [](std::shared_ptr<State> state) {
+            if (state->CurrentScene() == game::scenes::Castle(state.get())) {
+              if (!state->PlayerHasGem()) {
+                std::cout << "You do not have a gem.\n" << std::endl;
+                state->GameOver();
+              }
+            }
+          }};
 }
 
-std::string DiveDeeperAction::Name() const { return "Dive Deeper"; };
-void DiveDeeperAction::Execute(game::State* state) {
-  state->ToScene(game::scenes::MineGate(state));
+// TODO: Refactor to Mine Entry implementation.
+ActionStruct TakeTorchAction() {
+  return {.name = "Take Torch", .action_fn = [](std::shared_ptr<State> state) {
+            state->SetPlayerHasTorch(true);
+            std::cout << "You take the torch!" << std::endl;
+          }};
+}
+
+// TODO: Refactor to Mine Entry implementation.
+ActionStruct DiveDeeperAction() {
+  return {.name = "Dive Deeper", .action_fn = [](std::shared_ptr<State> state) {
+            state->ToScene(game::scenes::MineGate(state.get()));
+          }};
 }
 
 }  // namespace actions

@@ -16,12 +16,10 @@ class MineEntryScene : public game::Scene {
   MineEntryScene(game::State* state);
   std::string Name() const override;
   std::string Description() const override;
-  std::vector<std::shared_ptr<Action>> Actions() const override;
+  const std::vector<ActionStruct> Actions() const override;
 
  private:
   game::State* _state;
-  std::shared_ptr<game::actions::TakeTorchAction> _take_torch_action;
-  std::shared_ptr<game::actions::DiveDeeperAction> _dive_deeper_action;
 };
 
 }  // namespace scenes

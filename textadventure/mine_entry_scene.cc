@@ -9,10 +9,7 @@
 
 namespace game {
 namespace scenes {
-MineEntryScene::MineEntryScene(game::State* state) : _state(state) {
-  _take_torch_action = std::make_shared<game::actions::TakeTorchAction>();
-  _dive_deeper_action = std::make_shared<game::actions::DiveDeeperAction>();
-}
+MineEntryScene::MineEntryScene(game::State* state) : _state(state) {}
 
 std::string MineEntryScene::Name() const { return "Mine Entry"; }
 
@@ -30,12 +27,12 @@ std::string MineEntryScene::Description() const {
   return desc;
 }
 
-std::vector<std::shared_ptr<Action>> MineEntryScene::Actions() const {
-  std::vector<std::shared_ptr<Action>> result;
+const std::vector<ActionStruct> MineEntryScene::Actions() const {
+  std::vector<ActionStruct> result;
   if (!_state->PlayerHasTorch()) {
-    result.push_back(_take_torch_action);
+    result.push_back(game::actions::TakeTorchAction());
   }
-  result.push_back(_dive_deeper_action);
+  result.push_back(game::actions::DiveDeeperAction());
   return result;
 }
 

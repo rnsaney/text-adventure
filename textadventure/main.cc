@@ -1,5 +1,6 @@
 #include <iostream>
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -10,22 +11,22 @@
 #include "textadventure/state.h"
 
 int main() {
-  game::State state;
-  game::Scene* opening = game::scenes::Opening(&state);
-  state.ToScene(opening);
+  std::shared_ptr<game::State> state = std::make_shared<game::State>();
+  game::Scene* opening = game::scenes::Opening(state.get());
+  state->ToScene(opening);
 
   while (true) {
     std::string input;
-    state.CurrentScene()->PrintOptions();
+    state->CurrentScene()->PrintOptions();
     std::cout << ">>> ";
     std::cout.flush();
     std::getline(std::cin, input);
-    state.CurrentScene()->TryInput(input, &state);
-    if (state.IsGameOver()) {
+    state->CurrentScene()->TryInput(input, state);
+    if (state->IsGameOver()) {
       std::cout << "\nGAME OVER\n" << std::endl;
       break;
     }
-    if (state.IsGameWon()) {
+    if (state->IsGameWon()) {
       std::cout << "\nYOU WIN!\n" << std::endl;
       std::cout << "\nThis concludes The Demo. Thank you for playing!\n"
                 << std::endl;

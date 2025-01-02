@@ -9,8 +9,8 @@
 
 namespace game {
 
-class Action;
 class State;
+struct ActionStruct;
 
 class Scene {
  public:
@@ -23,12 +23,12 @@ class Scene {
 
   void PrintDescription() const;
 
-  // Retrieve possible actions.
-  virtual std::vector<std::shared_ptr<Action>> Actions() const = 0;
+  // Retrive possible player actions.
+  virtual const std::vector<game::ActionStruct> Actions() const = 0;
 
   void PrintOptions() const;
 
-  void TryInput(const std::string& input, State* state);
+  void TryInput(const std::string& input, std::shared_ptr<State> state);
 
   virtual void Reaction();
 

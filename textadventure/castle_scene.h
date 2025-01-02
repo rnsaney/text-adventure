@@ -16,14 +16,13 @@ class CastleScene : virtual public game::Scene {
   CastleScene(game::State* state);
   std::string Name() const override;
   std::string Description() const override;
-  std::vector<std::shared_ptr<Action>> Actions() const override;
+  const std::vector<ActionStruct> Actions() const override;
   void Reaction() override;
 
  private:
   void GuardSpeaks() const;
 
   game::State* _state;
-  int step = 1;
 };
 
 }  // namespace scenes
